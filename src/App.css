@@ -1,38 +1,481 @@
-.App {
-  text-align: center;
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root{
+  --button-color: rgb(18, 18, 158); 
+  --button-color-hover: rgb(6, 6, 61); 
+  
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: 'Arial', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar {
+  background-color: rgb(10, 10, 10);
+  padding: 1rem;
+  display: flex;
+  max-height: 100px;
+  
+ 
+  align-items: center;
+}
+.navbar-logo {
+  display: inline-block; /* Allows flexibility for placement */
+  /* Adds some spacing around the logo */
+  background-color: #fff; /* Optional, can be adjusted to fit UI */
+  border-radius: 8px; /* Adds rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for depth */
+  max-width: 150px;
+  max-height: inherit;
+  margin: 0;
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar-logo a img {
+  width: 100%; /* Ensures the logo scales down responsively */
+  height: auto; /* Maintains the aspect ratio */
+  display: block; /* Removes any inline gaps */
+  object-fit: fill; 
+  /* Ensures the entire logo fits inside the container */
+  max-height: 70px;
+  transform: scale(1.5);
+}
+.navbar-logo a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+flex: 1;
+justify-content: center;
+
+}
+
+.navbar-links li a {
+  color:white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  padding: 20px;
+  border-radius: 25px;
+  
+  
+  
+  
+}
+.navbar-links li a:hover{
+ 
+  border: white dashed ;
+  
+ 
+  transition: all 0.3s ease-in-out;
+  
+}
+
+.navbar-links li a:hover {
+  color: #f0a500;
+}
+
+/* carousel styling*/
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 2rem auto;
+
+}
+
+.carousel-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  text-align: center;
+  margin-left: 3%;
+  margin-right: 3%;
+  max-width: 400px;
+
+ 
+}
+.carousel-items{
+  display: flex;
+  
+  
+  
+ 
+  width: 78%;
+}
+
+.carousel-image {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Sets the aspect ratio (e.g., 16:9) */
+  object-fit: cover; /* Ensures the image covers the entire area */
+  border-radius: 10px; /* Optional, adds rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional, adds a shadow */
+}
+
+.carousel-details {
+  margin-top: 1rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.register-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: var(--button-color);
   color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.register-btn:hover {
+  background-color: var(--button-color-hover);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.carousel-btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-btn:hover {
+  background-color: #555;
+}
+
+/*search bar */
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+  max-width: 600px;
+  width: 100%;
+  padding-bottom: 100px;
+}
+
+.search-input {
+  width: 80%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: #4CAF50;
+}
+
+.search-button {
+  padding: 0.5rem 1rem;
+  background-color: rgb(21, 162, 184);
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: rgb(11, 76, 86);
+}
+
+/*footer section*/
+/* styles.css */
+
+.footer-container {
+  background: linear-gradient(135deg, #4060ff, #40ffcf); /* Gradient background */
+  color: white;
+  padding: 40px 20px; /* Increased padding for a spacious feel */
+  text-align: center; /* Center-align text for a modern look */
+  position: relative; /* Position relative for inner elements */
+}
+
+.footer-content {
+  display: flex; /* Flex layout for responsive design */
+  justify-content: space-around; /* Space between sections */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.footer-section {
+  flex: 1; /* Allow sections to grow equally */
+  min-width: 200px; /* Minimum width for smaller screens */
+  margin: 20px; /* Margin between sections */
+}
+
+.footer-section h4 {
+  font-size: 20px; /* Increased font size for headers */
+  margin-bottom: 10px; /* Space below the headers */
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* Funky font */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow for a fun effect */
+}
+
+.footer-section ul {
+  list-style-type: none; /* Remove default list styles */
+  padding: 0; /* Remove padding */
+}
+
+.footer-section li {
+  margin: 5px 0; /* Space between list items */
+}
+
+.footer-section a {
+  color: #fff; /* White text for links */
+  text-decoration: underline; /* Underlined links for emphasis */
+  transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.footer-section a:hover {
+  color: #ffeb3b; /* Change color on hover for links */
+}
+
+.footer-section p {
+  margin: 5px 0; /* Space between paragraphs */
+}
+
+/* Add a fun bottom decoration */
+.footer-container::before {
+  content: "";
+  position: absolute;
+  bottom: -20px; /* Position decoration below the footer */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px; /* Width of the decoration */
+  height: 10px; /* Height of the decoration */
+  background: #fff; /* Decoration color */
+  border-radius: 50%; /* Rounded decoration */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+}
+
+/*sign up */
+.signup-container, .login-container {
+  max-width: 500px; /* Increased width for a more spacious feel */
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #ffffff; /* White background for the form */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+  position: relative; /* Changed to relative */
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7); /* Darker overlay for focus */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-container  h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333; /* Darker text for better readability */
+}
+
+form {
+  display: flex;
+  flex-direction: column; /* Flex column layout for form elements */
+}
+
+form input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd; /* Lighter border */
+  border-radius: 8px;
+  font-size: 16px; /* Slightly larger font size for readability */
+  transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+form input:focus {
+  border-color: #4CAF50; /* Green border on focus */
+  outline: none; /* Remove outline */
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--button-color); /* Green */
+  color: white;
+  font-size: 16px; /* Consistent font size */
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition for button */
+}
+
+form button:hover {
+  background-color: var(--button-color-hover); /* Darker green on hover */
+}
+
+/* Close button for the popup */
+.close-button {
+  background: #f44336; /* Bright red background */
+  border: none;
+  color: white;
+  font-size: 18px; /* Slightly larger font size */
+  border-radius: 50%; /* Circular shape */
+  width: 36px; /* Fixed width */
+  height: 36px; /* Fixed height */
+  cursor: pointer;
+  position: absolute; /* Position the close button */
+  top: 15px; /* Positioning from the top */
+  right: 15px; /* Positioning from the right */
+  display: flex;
+  align-items: center; /* Centering the text */
+  justify-content: center; /* Centering the text */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+.close-button:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/*category section*/
+.category-tab {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.category-item {
+  background-color: #4a90e2; /* Base blue color */
+  color: white;
+  padding: 15px 20px;
+  margin: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s; /* Smooth transitions */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  font-weight: bold;
+  flex: 1 1 150px; /* Responsive flex item */
+}
+
+.category-item:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.category-item.active {
+  background-color: #007bff; /* Darker blue for active state */
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.5); /* Deeper shadow for active state */
+}
+
+.selected-categories {
+  margin-top: 20px;
+  color: #333; /* Darker text for contrast */
+}
+
+/*events page */
+.events-flex{
+  display: flex;
+}
+
+/*user profile */
+
+
+.profile-container {
+  background-color: rgb(255, 255, 255);
+  position:fixed;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  padding: 20px;
+  max-width: 400px; /* Max width for the profile */
+  margin-left: 50px;
+  
+  height: fit-content;
+  text-align: center;
+}
+
+.profile-header {
+  margin-bottom: 20px; /* Space below the header */
+}
+
+.profile-image {
+  border-radius: 50%; /* Circular profile image */
+  width: 100px; /* Fixed width for the image */
+  height: 100px; /* Fixed height for the image */
+  object-fit: cover; /* Cover to maintain aspect ratio */
+  border: 3px solid #4a90e2; /* Blue border */
+}
+
+.profile-stats {
+  text-align: left; /* Left-align stats for better readability */
+}
+
+.profile-stats h3 {
+  margin-bottom: 10px; /* Space below the statistics header */
+}
+
+.profile-stats ul {
+  list-style-type: none; /* Remove default list styles */
+  padding: 0; /* Remove padding */
+}
+
+.profile-stats li {
+  margin: 10px 0; /* Space between list items */
+}
+
+
+/*dashboard */
+.dashboard-flex{
+  display: flex;
+ 
+}
+.dashboard-userprofile{
+  display: block;
+  width: 400px;
+}
+h1 {
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun font */
+  font-size: 42px; /* Larger font size */
+  color: #FF5733; /* Vibrant coral color that contrasts with blue */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 
+               0 0 25px #FF5733, 
+               0 0 5px #FF5733; /* Fun shadow effect */
+  transform: rotate(-1.5deg); /* Slight rotation for a funky look */
+  letter-spacing: 2px; /* Increased spacing for a playful feel */
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
+  text-align: center;
+}
+
+h1:hover {
+  transform: rotate(2deg) scale(1.1); /* Rotate and scale on hover */
+  color: #211702; /* Change color on hover */
 }
