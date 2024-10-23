@@ -10,9 +10,6 @@
   
 }
 
-body {
-  font-family: 'Arial', sans-serif;
-}
 
 .navbar {
   background-color: rgb(10, 10, 10);
@@ -91,7 +88,12 @@ justify-content: center;
   align-items: center;
   justify-content: center;
   width: 100%;
+  overflow: hidden;
   margin: 2rem auto;
+
+}
+.carousel{
+  display: flex;
 
 }
 
@@ -99,12 +101,33 @@ justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
+  background-size:cover;
   text-align: center;
-  margin-left: 3%;
-  margin-right: 3%;
-  max-width: 400px;
+  margin-left: 8px;
+  margin-right: 8px;
+  height: 60vh;
+  min-width: 33.333%;
+ 
+  transition: transform 0.5s ease, filter 0.5s ease;
 
  
+}
+.carousel-item:hover{
+  transform: scale(1.1);
+  filter: brightness(1.5) contrast(1.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+.carousel-item:hover::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(17, 103, 201, 0.301); /* Tomato-like color with transparency */
+  mix-blend-mode: multiply;
+  transition: all 0.5s ease;
 }
 .carousel-items{
   display: flex;
@@ -112,18 +135,15 @@ justify-content: center;
   
   
  
-  width: 78%;
+  width: 100%;
 }
 
-.carousel-image {
-  width: 100%;
-  aspect-ratio: 16 / 9; /* Sets the aspect ratio (e.g., 16:9) */
-  object-fit: cover; /* Ensures the image covers the entire area */
-  border-radius: 10px; /* Optional, adds rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional, adds a shadow */
-}
+
 
 .carousel-details {
+  background-color: rgba(0, 0, 0, 0.587);
+  color: white;
+  width: 100%;
   margin-top: 1rem;
 }
 
@@ -138,34 +158,165 @@ p {
 }
 
 .register-btn {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background-color: var(--button-color);
+  background-color: #3F51B5; /* Blue */
   color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .register-btn:hover {
-  background-color: var(--button-color-hover);
+  background-color: #293278; /* Darker blue */
+  transform: translateY(-3px); /* Slight lift to make it more interactive */
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+}
+
+.register-btn:active {
+  transform: translateY(1px); /* Button presses down when clicked */
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2); /* Less shadow when pressed */
 }
 
 .carousel-btn {
-  background-color: #333;
-  color: #fff;
-  border: none;
-  padding: 1rem;
+
+  top: 50%;
+  
+  width: 40px;
+  height: 40px;
+padding: 25px;
+  background-color: rgba(231, 224, 224, 0.5); /* Transparent overlay */
+  border-radius: 50%;
+  display: flex;
+  color: black;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  font-size: 1.5rem;
-  transition: background-color 0.3s ease;
+  z-index: 1000;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .carousel-btn:hover {
-  background-color: #555;
+  background-color: 
+  rgba(0, 0, 0, 0.7);
+}
+.carousel-button.next {
+  right: 20px;
+}
+.carousel-button.prev {
+  left: 20px;
+}
+
+/*single slideshow */
+.slide-container {
+
+  position: relative;
+  width: 80vw;
+  height: 80vh;
+  margin: 50px auto;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #f2709c, #ff9472);
+}
+
+.slide-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  background-size:cover;
+
+  color: white;
+  
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.slide-item {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease-in-out;
+  color: white;
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease-in-out;
+}
+
+.slide-item h1 {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.slide-item p {
+  font-size: 1.5rem;
+  line-height: 1.7;
+  font-family: 'Poppins', sans-serif; /* Friendly, rounded font */
+  color: rgba(250, 250, 250, 0.9);
+  background-color: rgba(43, 45, 66, 0.9); /* Soft dark blue */
+  padding: 20px;
+  max-width: 60%;
+  margin: 20px 0;
+  border-radius: 12px;
+  letter-spacing: 0.6px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.slide-btn {
+  position: absolute;
+  top: 70%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5); /* Transparent overlay */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.slide-btn:hover {
+  background-color:  rgba(0, 0, 0, 0.7);
+ 
+}
+
+.slide-btn.prev {
+  left: 20px;
+}
+
+.slide-btn.next {
+  right: 20px;
+}
+.flex{
+  display:flex;
+  margin-bottom: 10%;
+}
+.slide-collumn{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 /*search bar */
+/* Search bar */
 .search-bar-container {
   display: flex;
   justify-content: center;
@@ -174,34 +325,41 @@ p {
   max-width: 600px;
   width: 100%;
   padding-bottom: 100px;
+  
 }
 
 .search-input {
-  width: 80%;
+  display: flex;
+  width: 100%;
+  height: 12vh;
   padding: 0.5rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
+  border: 2px solid #ccc;
+  text-align: center;
+  border-radius: 25px;
+    margin-bottom: 5%;
   outline: none;
+  transition: border-color 0.3s ease;
 }
 
 .search-input:focus {
-  border-color: #4CAF50;
+  border-color: #2196F3; /* Material UI primary color */
 }
 
 .search-button {
   padding: 0.5rem 1rem;
-  background-color: rgb(21, 162, 184);
+  background-color: #2196F3; /* Material UI primary color */
   color: white;
   border: none;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
   font-size: 1rem;
+
   transition: background-color 0.3s ease;
 }
 
 .search-button:hover {
-  background-color: rgb(11, 76, 86);
+  background-color: #1976D2; /* Darker shade of primary color */
 }
 
 /*footer section*/
@@ -462,7 +620,7 @@ form button:hover {
   display: block;
   width: 400px;
 }
-h1 {
+.title {
   font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun font */
   font-size: 42px; /* Larger font size */
   color: #FF5733; /* Vibrant coral color that contrasts with blue */
@@ -475,7 +633,120 @@ h1 {
   text-align: center;
 }
 
-h1:hover {
+.title:hover {
   transform: rotate(2deg) scale(1.1); /* Rotate and scale on hover */
   color: #211702; /* Change color on hover */
+}
+h1 {
+  font-family: 'Montserrat', sans-serif; /* Clean, modern font */
+  font-size: 48px; /* Large, bold font size */
+  color: #2E2E2E; /* Neutral dark gray color */
+  font-weight: 700; /* Bold font weight */
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+  letter-spacing: 1.5px; /* Slight spacing for emphasis */
+  text-align: center;
+  margin-bottom: 20px; /* Adds spacing below the heading */
+  line-height: 1.2; /* Compact line height for strong appearance */
+  transition: transform 0.3s ease, color 0.3s ease; /* Smooth hover effects */
+}
+
+/* Hover effect */
+h1:hover {
+  transform: scale(1.05); /* Slight scale-up on hover */
+  color: #1C1C1C; /* Darker neutral color on hover */
+}
+
+/*Trending event */
+.trending-event-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.trending-event-card {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event-image {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.event-details {
+  margin-top: 20px;
+}
+
+.event-title {
+  color: #2196F3;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.event-date-time,
+.event-location,
+.event-description {
+  color: #757575;
+  margin-bottom: 10px;
+}
+
+.register-button {
+  background-color: #2196F3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+
+  font-weight: bold;
+}
+
+.register-button:hover {
+  background-color: #1976D2;
+}
+
+.limited-availability {
+  background-color: #ffebee;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.limited-availability p {
+  color: #c62828;
+  font-weight: bold;
+}
+.trending-event-title {
+  font-size: 48px;
+  font-weight: bold;
+  color: #f5006a; /* A vibrant pink */
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle text shadow for depth */
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform:
+ translateY(-5px);
+  }
+  100% {
+    transform: translateY(0); 
+
+  }
 }

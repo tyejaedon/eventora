@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef ,useEffect} from 'react';
 import event1 from '../resources/event1.jpg';
 import event2 from '../resources/event2.jpg';
 import event3 from '../resources/event3.jpg';
@@ -44,52 +44,85 @@ const events = [
 
 const EventCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [lastPressTime, setLastPressTime] = useState(Date.now()); // Store the last press time
+  const [timeSinceLastPress, setTimeSinceLastPress] = useState(0); // Store elapsed time
 
+
+  const itemsToShow = 3;
+  
   const handleNext = () => {
-    setCurrentIndex((prevIndex) =>{
-      if(prevIndex+3 < events.length){
-        return( prevIndex + 1);
-      }else{
-        return 0;
-      };
-      }
-     
- ) };
+    setCurrentIndex((prevIndex) =>
+      prevIndex === events.length - itemsToShow ? 0 : prevIndex + 1
+    );
+    setLastPressTime(Date.now());
+  };
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? events.length - 1 : prevIndex - 1
+      prevIndex === 0 ? events.length - itemsToShow : prevIndex - 1
     );
+    setLastPressTime(Date.now());
   };
 
-  const currentEvents = events.slice(currentIndex, currentIndex + 3);
-  console.log(currentEvents);
 
+   // Effect to update the time since the last press
+   useEffect(() => {
+    const interval = setInterval(() => {
+      const elapsedTime = Math.floor((Date.now() - lastPressTime) / 1000); // Calculate the time since last press
+      setTimeSinceLastPress(elapsedTime);
+      
+    
+    }, 1000); // Check every second
+
+    return () => clearInterval(interval); // Cleanup the interval on component unmount
+  }, [lastPressTime]);
+  if (timeSinceLastPress > 5) {
+    handleNext();
+    setTimeSinceLastPress(0);
+  }
+ 
+
+const smooth = {
+  transform: `translateX(-${currentIndex * (100 / itemsToShow)}%)`,
+  transition: 'all 0.5s ease-in',
+
+}
 
 
   return (
     <div className="carousel-container">
-      <button className="carousel-btn" onClick={handlePrev}>‹</button>
+      <button className="carousel-btn prev" onClick={handlePrev}>‹</button>
 
-
-        {currentEvents.map((event) => {
-          return(
+      <div
+          className="carousel" 
+          style={
+            smooth
+          }
+        >
+      {events.map((event,index) => {
+        return (
         
-                <div className="carousel-item">
-                <img src={event.image} alt={event.description} className="carousel-image" />
-                <div className="carousel-details">
-                  <h3>{event.description}</h3>
-                  <p>Slots available: {event.slotsAvailable}</p>
-                  <a href={event.link} className="register-btn">Register</a>
-                </div>
-                </div>
-          )
 
-        })}
 
-  
+          <div className="carousel-item" style={{ backgroundImage: `url(${event.image})` }} key={index}>
 
-      <button className="carousel-btn" onClick={handleNext}>›</button>
+            <div className="carousel-details">
+              <h3>{event.description}</h3>
+              <p>Slots available: {event.slotsAvailable}</p>
+           
+            </div>
+            
+          </div>
+   
+
+        )
+
+      })}
+      </div>
+
+
+
+      <button className="carousel-btn next" onClick={handleNext}>›</button>
     </div>
   );
 };
